@@ -2,6 +2,7 @@
   "name": "ui-theme-selection",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://u6611946.github.io/ui-theme-selection",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
