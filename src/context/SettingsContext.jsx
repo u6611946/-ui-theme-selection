@@ -2,48 +2,42 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const SettingsContext = createContext();
 
-export function SettingsProvider({ children }) {
+const defaultSettings = {
+  theme: "light",
+  language: "en",
+};
 
-  // default values
+export function SettingsProvider({ children }) {
   const [theme, setTheme] = useState("light");
   const [language, setLanguage] = useState("en");
 
-  // 1) Load from localStorage (on start)
+  // load from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("app-settings");
     if (saved) {
-      const parsed = JSON.parse(saved);
-      setTheme(parsed.theme);
-      setLanguage(parsed.language);
+      const data = JSON.parse(saved);
+      setTheme(data.theme);
+      setLanguage(data.language);
     }
   }, []);
 
-  // 2) Save to localStorage (when changed)
+  // save to localStorage
   useEffect(() => {
-    const settings = {
-      theme: theme,
-      language: language
-    };
     localStorage.setItem(
       "app-settings",
-      JSON.stringify(settings)
+      JSON.stringify({ theme, language })
     );
   }, [theme, language]);
 
-  // reset function
   function resetSettings() {
-    setTheme("light");
-    setLanguage("en");
+    setTheme(defaultSettings.theme);
+    setLanguage(defaultSettings.language);
   }
 
   return (
-    <SettingsContext.Provider value={{
-      theme,
-      language,
-      setTheme,
-      setLanguage,
-      resetSettings
-    }}>
+    <SettingsContext.Provider
+      value={{ theme, language, setTheme, setLanguage, resetSettings }}
+    >
       {children}
     </SettingsContext.Provider>
   );
