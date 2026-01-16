@@ -4,7 +4,6 @@ import App from "./App";
 import { SettingsProvider } from "./context/SettingsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 root.render(
   <SettingsProvider>
     <App />

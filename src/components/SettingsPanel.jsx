@@ -1,7 +1,7 @@
 import { useSettings } from "../context/SettingsContext";
 
 export default function SettingsPanel() {
-  const { theme, language, setTheme, setLanguage, resetSettings } = useSettings();
+  const { setTheme, setLanguage, resetSettings } = useSettings();
 
   return (
     <div>
