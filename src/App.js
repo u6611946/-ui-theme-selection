@@ -1,10 +1,14 @@
 import Header from "./components/Header";
 import SettingsPanel from "./components/SettingsPanel";
 import PreviewCard from "./components/PreviewCard";
+import { useSettings } from "./context/SettingsContext";
+import "./App.css";
 
 function App() {
+  const { theme } = useSettings();
+
   return (
-    <div>
+    <div className={`app ${theme}`}>
       <Header />
       <SettingsPanel />
       <PreviewCard />

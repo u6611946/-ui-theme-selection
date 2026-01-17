@@ -7,15 +7,15 @@ export default function SettingsPanel() {
     <div>
       <h3>Settings</h3>
 
-      <button onClick={() => setTheme("light")}>Light</button>
-      <button onClick={() => setTheme("dark")}>Dark</button>
+      <div>
+        <button onClick={() => setTheme("light")}>Light</button>
+        <button onClick={() => setTheme("dark")}>Dark</button>
+      </div>
 
-      <br /><br />
-
-      <button onClick={() => setLanguage("en")}>EN</button>
-      <button onClick={() => setLanguage("th")}>TH</button>
-
-      <br /><br />
+      <div>
+        <button onClick={() => setLanguage("en")}>EN</button>
+        <button onClick={() => setLanguage("th")}>TH</button>
+      </div>
 
       <button onClick={resetSettings}>Reset</button>
     </div>

@@ -8,30 +8,28 @@ const defaultSettings = {
 };
 
 export function SettingsProvider({ children }) {
-  const [theme, setTheme] = useState("light");
-  const [language, setLanguage] = useState("en");
+  const [theme, setTheme] = useState(defaultSettings.theme);
+  const [language, setLanguage] = useState(defaultSettings.language);
 
-  // load from localStorage
+  // LOAD from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("app-settings");
     if (saved) {
-      const data = JSON.parse(saved);
-      setTheme(data.theme);
-      setLanguage(data.language);
+      const parsed = JSON.parse(saved);
+      setTheme(parsed.theme);
+      setLanguage(parsed.language);
     }
   }, []);
 
-  // save to localStorage
+  // SAVE to localStorage
   useEffect(() => {
-    localStorage.setItem(
-      "app-settings",
-      JSON.stringify({ theme, language })
-    );
+    const data = { theme, language };
+    localStorage.setItem("app-settings", JSON.stringify(data));
   }, [theme, language]);
 
   function resetSettings() {
-    setTheme(defaultSettings.theme);
-    setLanguage(defaultSettings.language);
+    setTheme("light");
+    setLanguage("en");
   }
 
   return (
